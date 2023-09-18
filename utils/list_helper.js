@@ -1,3 +1,5 @@
+var _ = require("lodash");
+
 const dummy = (blogs) => {
   return 1;
 };
@@ -23,8 +25,28 @@ const favorite = (blogs) => {
 
   return blog;
 };
+const mostBlogs = (blogs) => {
+  const author = _.countBy(blogs, "author");
+  //   console.log("🚀 ~ file: list_helper.js:30 ~ mostBlogs ~ author:", author);
+  const maxBlogs = Math.max(...Object.values(author));
+  //   console.log("🚀 ~ file: list_helper.js:32 ~ mostBlogs ~ maxBlogs:", maxBlogs);
+  const selectedAuthor = Object.keys(author).find(
+    (key) => author[key] === maxBlogs
+  );
+  //   console.log(
+  //     "🚀 ~ file: list_helper.js:36 ~ mostBlogs ~ selectedAuthor:",
+  //     selectedAuthor
+  //   );
+
+  return {
+    autor: selectedAuthor,
+    blogs: maxBlogs,
+  };
+};
+
 module.exports = {
   dummy,
   totalLikes,
   favorite,
+  mostBlogs,
 };
