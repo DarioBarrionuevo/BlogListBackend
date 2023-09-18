@@ -107,4 +107,12 @@ describe("autor", () => {
       blogs: 3,
     });
   });
+  test("show the author with most likes ", () => {
+    const result = listHelper.mostLikes(blogs);
+
+    expect(result).toEqual({
+      autor: "Edsger W. Dijkstra",
+      likes: 17,
+    });
+  });
 });
