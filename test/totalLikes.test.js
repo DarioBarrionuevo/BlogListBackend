@@ -43,4 +43,8 @@ describe("total likes", () => {
     const result = listHelper.totalLikes(blogList);
     expect(result).toBe(6);
   });
+  test("when list has a favorite depending on likes number", () => {
+    const result = listHelper.favorite(blogList);
+    expect(result).toEqual(blogList[1]);
+  });
 });

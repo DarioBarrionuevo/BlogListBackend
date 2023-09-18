@@ -15,7 +15,16 @@ const totalLikes = (blogs) => {
   }
 };
 
+const favorite = (blogs) => {
+  const likes = blogs.map((item) => item.likes);
+  //   console.log("🚀 ~ file: list_helper.js:20 ~ favorite ~ likes:", likes);
+  const blog = blogs[likes.indexOf(Math.max(...likes))];
+  //   console.log("🚀 ~ file: list_helper.js:22 ~ favorite ~ blog:", blog)
+
+  return blog;
+};
 module.exports = {
   dummy,
   totalLikes,
+  favorite,
 };
