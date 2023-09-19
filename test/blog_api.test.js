@@ -53,6 +53,16 @@ describe("api", () => {
     // console.log("🚀 ~ file: blog_api.test.js:53 ~ test.only ~ result:", result)
     expect(result).toContain("Las que entran por las que salen");
   });
+  test("blog without likes default to 0 likes", async () => {
+    const noLikesBlog = {
+      title: "Como estan ustedes",
+      author: "Fofito aragon",
+      url: "http://www.faltanlikes.es",
+    };
+
+    const response = await api.post("/api/blogs").send(noLikesBlog);
+    expect(response.body.likes).toBe(0);
+  });
 });
 afterAll(async () => {
   await mongoose.connection.close();
