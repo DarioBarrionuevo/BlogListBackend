@@ -25,6 +25,12 @@ describe("api", () => {
 
     expect(response.body).toHaveLength(helper.initialBlogs.length);
   });
+  test("checking id attribute", async () => {
+    const response = await api.get("/api/blogs");
+    const result = response.body.map((r) => r.id);
+
+    expect(result[0]).toBeDefined();
+  });
 });
 afterAll(async () => {
   await mongoose.connection.close();
