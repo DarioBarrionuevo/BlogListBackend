@@ -14,12 +14,18 @@ blogsRouter.get("/", (request, response, next) => {
 blogsRouter.post("/", (request, response, next) => {
   const blog = new Blog(request.body);
 
-  blog
-    .save()
-    .then((result) => {
-      response.status(201).json(result);
-    })
-    .catch((error) => next(error));
+  if (!blog.title || !blog.author || !blog.url) {
+    response.status(400).end();
+  } else {
+    blog
+      .save()
+      .then((result) => {
+        response.status(201).json(result);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 });
 
 module.exports = blogsRouter;

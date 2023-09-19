@@ -63,6 +63,15 @@ describe("api", () => {
     const response = await api.post("/api/blogs").send(noLikesBlog);
     expect(response.body.likes).toBe(0);
   });
+
+  test("no title and url return 400 status", async () => {
+    const noUrlAndTitleBlog = {
+      author: "Carmen de mairena",
+      likes: 0,
+    };
+
+    await api.post("/api/blogs").send(noUrlAndTitleBlog).expect(400);
+  });
 });
 afterAll(async () => {
   await mongoose.connection.close();
